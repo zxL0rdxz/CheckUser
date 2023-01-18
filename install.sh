@@ -109,8 +109,6 @@ function console_menu() {
     fi
 
     echo
-	echo 'Porta: $port'
-	echo
     echo '[01] - Instalar CheckUser'
     echo '[02] - Atualizar CheckUser'
     echo '[03] - Desinstalar CheckUser'
