@@ -35,9 +35,11 @@ function install_checkuser() {
     service check_user start
 
     echo 'CheckUser instalado com sucesso.'
-    echo 'Execute: checkuser --help'
+    eche ''
     echo 'URL: http://'$(curl -s icanhazip.com)':'$port
-    read
+	echo ''
+    echo 'Clique enter para voltar ao menu'
+	read
 }
 
 function check_update() {
@@ -55,6 +57,8 @@ function check_update() {
 
     python3 setup.py install
     echo 'CheckUser atualizado com sucesso.'
+	echo ''
+    echo 'Clique enter para voltar ao menu'
     read
 }
 
@@ -74,11 +78,37 @@ function uninstall_checkuser() {
         /usr/local/bin/checkuser --remove-service
         rm /usr/local/bin/checkuser
     }
+	
+	}
+	
+function reinstall_checkuser() {
+    uninstall_checkuser
+    install_checkuser
+    start_checkuser
+}
+
+function is_installed() {
+    return $(command -v checkuser &>/dev/null)
+}
+
+function get_version() {
+    if is_installed; then
+        echo $(checkuser --version | cut -d ' ' -f 2)
+    else
+        echo '-1'
+    fi
 }
 
 function console_menu() {
     clear
-    echo 'CHECKUSER MENU'
+     echo -n 'CHECKUSER MENU - '
+    if is_installed; then
+        echo -e '\e[32m[INSTALADO]\e[0m - Versao:' $(get_version)
+    else
+        echo -e '\e[31m[DESINSTALADO]\e[0m'
+    fi
+
+    echo
     echo '[01] - Instalar CheckUser'
     echo '[02] - Atualizar CheckUser'
     echo '[03] - Desinstalar CheckUser'
