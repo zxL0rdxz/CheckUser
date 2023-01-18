@@ -108,8 +108,6 @@ function console_menu() {
         echo -e '\e[31m[DESINSTALADO]\e[0m'
     fi
 
-    echo
-	echo 'Porta:' $port
 	echo
     echo '[01] - Instalar CheckUser'
     echo '[02] - Atualizar CheckUser'
