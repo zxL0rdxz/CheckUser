@@ -81,8 +81,8 @@ def check_user(username: str) -> t.Dict[str, t.Any]:
 
         return {
             'username': username,
-            'count_connection': count,
-            'limit_connection': limit_connection,
+            'count_connections': count,
+            'limit_connections': limit_connection,
             'expiration_date': expiration_date,
             'expiration_days': expiration_days,
             'time_online': time_online,
